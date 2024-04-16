@@ -15,6 +15,9 @@ class TabExampleView(PermissionRequiredMixin, View):
     )
 
     def get(self, request, pk):
+        # NetBox will pass the primary key to the tab view, and the
+        # retrieved object is passed to the template for it to be able
+        # to populate the page header correctly
         prefix = Prefix.objects.get(pk=pk)
         return render(
             request,
@@ -24,4 +27,3 @@ class TabExampleView(PermissionRequiredMixin, View):
                 "tab": self.tab,
             },
         )
-
